@@ -1,0 +1,8 @@
+Setting Routes in IP Tabels:
+
+For Ethereum Emulator:
+sudo iptables -t nat -A OUTPUT -p tcp --dport 8545 -d {Current IP of Device} -j DNAT --to-destination 0.0.0.0:8545
+
+For Sensor Node:
+sudo iptables -t nat -A OUTPUT -p tcp --dport 3000 -d {Current IP of Device} -j DNAT --to-destination 0.0.0.0:3000
+

@@ -1,0 +1,26 @@
+1>	Make a server <router> in nodeJs. 
+	Blockchain is working on guest OS on special IP.
+	Router is working on Host OS on localhost and 8000 port.  
+
+2>	Make nodes <http-clients> in nodeJs that sends data among them selves and are part of ethereum network. 
+	Data is usually sensor based like light and temperature.
+	These values are constanlty triggered among the nodes and the server <router>.
+
+3>	Make network using web3 interactions in p2p fashion.
+	Nodes interact with each other using web3 interactions.
+
+4>	Use (4 Lpatops, 2 Guest OS making request to specific IP) Total 5 nodes acting as IoT Node.
+	<http-clients> will open web page and send the requests. 
+
+5>	Router will trigger mobile agent and it will move from node to node. Each node giving IP of other. 
+	Mobile agent have IP of starting node. 
+	On each node visit Mobile agent will analyze the IP of other unvisited node.
+	After visitng all nodes, MA will come to router and give details about all the node.
+	Server <router> will forward all these details to the fog.
+
+6>	All the values are gthered and submited to router and then to fog and here the fog make transactions in blockchain.
+	Fog will calculate the trsut against each node and shoot the values to the blockchain.
+	Node on each sending data message will analyze the trust of the device. If the device is not trusted node will be red alerted that device.
+
+
+apm installer

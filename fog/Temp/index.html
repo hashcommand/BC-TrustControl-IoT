@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Control Pannel</title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+	<script src="https://gojs.net/latest/release/go.js"></script>
+</head>
+<style>
+	table {
+  		width:100%;
+	}
+	table, th, td {
+  		border: 1px solid black;
+  		border-collapse: collapse;
+	}
+	th, td {
+  		padding: 15px;
+  		text-align: left;
+	}
+	table.t01 tr:nth-child(even) {
+  		background-color: #eee;
+	}
+	table.t01 tr:nth-child(odd) {
+ 		background-color: #fff;
+	}
+	table.t01 th {
+  		background-color: black;
+  		color: white;
+	}
+</style>
+<body>
+
+<div class="col-md-12 jumbotron">
+	<center>
+		<h2>Control Pannel</h2>
+		<h4>Fog # Dell-Vostro-3750</h4>
+	</center>
+</div>
+
+<div class="col-md-12">
+	<h3> Total number of connected nodes: <span id="counting">0</span>  <a href="javascript:void(0)" onClick="ipLookup()"> <img src="http://localhost:3000/images/refresh.ico" alt="refresh" width="15px" height="15px"></a> </h3>
+</div>
+
+<div class="col-md-12">
+	<!-- Table for IpLookUp data show -->
+	<div id="test" style="height:300px;overflow:auto;" >
+		<table class="t01" id="hideMe">
+  			<tr>
+    			<th style="width:50%">
+    				<center>IP Address(s)</center>
+    			</th>
+
+    			<th style="width:50%">
+    				<center>Commands</center>
+    			</th>
+  			</tr>
+
+			<tr>
+    			<td style="height:240px">
+    				<center><i>Refresh</i></center>
+    			</td>
+
+    			<td style="height:240px">
+    				<center><i>Refresh</i></center>
+    			</td>
+  			</tr>
+		</table>
+	</div>
+</div>
+	<div class="col-md-12" style="height:25px;">
+		<!-- for height -->
+	</div>
+<div class="col-md-12">
+	<!-- Table for possible operations and attacks -->
+	<table class="t01">
+		<tr>
+			<th width="50%">
+				<center>
+					Trust Calulcation
+				</center>
+				<!-- <p>If 4 or more nodes are detected than network is divided into two proportions*</p> -->
+			</th>
+
+			<th width="50%">
+				<center>
+					Attacks
+				</center>
+			</th>
+		</tr>
+		<tr>
+			<td>
+				<button class="btn btn-info" data-toggle="modal" data-target="#myModal1" onClick="init()">View Current Iterneray Plan(s)</button>
+				<button class="btn btn-info" data-toggle="modal" data-target="#myModal2">Send Mobile Agent(s)</button>
+				<button class="btn btn-info" data-toggle="modal" data-target="#myModal3">Calculate and Transact Blockchain</button>
+			</td>
+			<td>
+				<button class="btn btn-danger"> Launch Black Hole Attack </button>
+				<button class="btn btn-danger"> Launch Grey Hole Attack </button>
+			</td>
+		</tr>
+</table>
+</div>
+
+<input type="text" value="Hello Phussy" style="display:none">
+
+<div id="testing">
+</div>
+
+<!-- Modal 1 -->
+<div id="myModal1" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Iterneray Planner</h4>
+      </div>
+      <div class="modal-body">
+				<h4><center> Following is a diagramtic view of the Iterneray Plan(s) </center></h4>
+
+				<hr>
+				<div id="myDiagramDiv0" style="height:500px;width:400px;">
+					<!-- here iternary plans are pasted -->
+				</div>
+
+				<div id="myDiagramDiv1" style="height:500px;width:400px;">
+					<!-- here iternary plans are pasted -->
+				</div>
+
+				<hr>
+				<h6><b>If 4 or more nodes are detected than network is divided into two portions*</b></h6>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- Modal 2 -->
+<div id="myModal2" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Modal Header</h4>
+      </div>
+      <div class="modal-body">
+        <p>Some text in the modal.</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- Modal 3 -->
+<div id="myModal3" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Modal Header</h4>
+      </div>
+      <div class="modal-body">
+        <p>Some text in the modal.</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- Modal 4 -->
+<div id="myModal4" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Node Type</h4>
+      </div>
+      <div class="modal-body">
+        <p><center><span>Sensor</span></center></p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+
+<!-- Modal 4 -->
+<div id="myModal5" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Ethereum Public Address</h4>
+      </div>
+      <div class="modal-body">
+        <p><center>0x89205A3A3b2A69De6Dbf7f01ED13B2108B2c43e7</center></p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- Adding javascript file -->
+<!-- <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js"></script> -->
+
+<!-- Ajax call for IP lookup operations -->
+<script type="text/javascript">
+function ipLookup() {
+	var myObj, x, html, count, string = '';
+   	xmlhttp = new XMLHttpRequest();
+   	xmlhttp.open("GET","http://localhost:3000/data?func=1", true);
+   	xmlhttp.onreadystatechange=function(){
+        if(xmlhttp.readyState==4 && xmlhttp.status==200){
+
+           	string = xmlhttp.responseText;
+           	myObj = JSON.parse(string);
+						count = Object.keys(myObj).length;
+
+						html = "<table border='1|1' class='t01'>";
+						html += "<tr><th style='width:50%'><center>IP Address(s)</center></th><th style='width:50%'><center>Commands</center></th></tr>";
+
+						for (var i = 0; i < myObj.length; i++) {
+         			html +="<tr>";
+         			html +="<td>"+myObj[i]+"</td>";
+         			html +="<td><a href="+ myObj[i] +" class='btn btn-primary' target='_blank'>Open</a> <a href="+ myObj[i] +" class='btn btn btn-warning' data-toggle='modal' data-target='#myModal4'>Node Type</a> <a href="+ myObj[i] +" class='btn btn btn-success' data-toggle='modal' data-target='#myModal5'>View Public Address</a></td>";
+         			html +="</tr>";
+     				}
+
+						html+="</table>";
+
+						document.getElementById("test").innerHTML = html;
+						document.getElementById("counting").innerHTML = count;
+				}
+   }
+
+   xmlhttp.send();
+}
+</script>
+
+
+<script>
+	function init() {
+		var count = '';
+		var myObj = '';
+		results1 = [];
+		// data start
+		xmlhttp = new XMLHttpRequest();
+		xmlhttp.open("GET","http://localhost:3000/data?func=1", true);
+		xmlhttp.onreadystatechange=function(){
+				if(xmlhttp.readyState==4 && xmlhttp.status==200){
+						string = xmlhttp.responseText;
+						myObj = JSON.parse(string);
+						count = Object.keys(myObj).length;
+						var results = chunkArray(myObj, 3);
+						if (results.length > 1) {
+							for (var e = 0; e<results.length;e++) {
+								results1.push(results[e]);
+
+							}
+
+							for (var i = 0; i< results1.length; i++) {
+									draw(results1[i],i);
+
+							 }
+						}
+				}
+		// data end
+}
+
+xmlhttp.send();
+}
+</script>
+
+<script>
+function chunkArray(myArray, chunk_size){
+    var index = 0;
+    var arrayLength = myArray.length;
+    var tempArray = [];
+
+    for (index = 0; index < arrayLength; index += chunk_size) {
+        myChunk = myArray.slice(index, index+chunk_size);
+        tempArray.push(myChunk);
+    }
+
+    return tempArray;
+}
+</script>
+
+<script>
+function draw(array,size) {
+	var awain = [];
+	var chawan = [];
+	var nodeDataArray = [];
+	var linkDataArray = [];
+	$size = go.GraphObject.make;
+	myDiagram = $size(go.Diagram, "myDiagramDiv" + size);
+	for (var i = 0; i < array.length; i++) {
+					awain.push({
+						key: array[i]
+						});
+			}
+
+	for (var j = 0; j < array.length; j++) {
+		var chunk = array.length-1;
+					if(j === chunk) {
+					chawan.push(
+						{to: array[j-chunk], from: array[j]}
+					);
+			} else {
+				chawan.push(
+					{to: array[j+1], from: array[j]}
+				);
+			}
+
+			myDiagram.model = new go.GraphLinksModel(chawan,awain);
+}
+}
+</script>
+
+</body>
+</html>

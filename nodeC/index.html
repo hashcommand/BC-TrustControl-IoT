@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Device A</title>
+	<!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script> -->
+  		<script src="http://0.0.0.0:3000/pathJavascript"></script>
+	<script src="http://0.0.0.0:3000/pathJquery"></script>
+	<link rel="stylesheet" href="http://0.0.0.0:3000/pathCSS">
+</head>
+<body>
+
+<h3 style="margin-bottom: 50px;">
+	<center>
+		Devcie C : Actuator (Alarm)
+		<p><font size="3"><b>IP # 192.168.1.5</b></font></p>
+		<p>
+		<button class="btn btn-primary" data-toggle="modal" data-target="#myModal1">Enter Blockchain Credentials</button>
+	</p>
+		<p>
+		<button class="btn btn-primary" data-toggle="modal" data-target="#myModal">Verify Trust of Node</button>
+	</p>
+	</center>
+</h3>
+
+<div class="col-md-12">
+	<div class="col-md-5">
+		<table class="table table-bordered">
+			<tr>
+				<th class="text-left">Node Energy</th>
+				<td class="text-left"><span id="crntEnergy">100000</span><i>mJ</i></td>
+			</tr>
+			<tr>
+				<th class="text-left">Forwarding Behaviour of Device A <i>(192.168.1.4)</i></th>
+				<td class="text-left"><span id="frdnfBehaviour"><i>To be Calculated 0</i> %</span></td>
+			</tr>
+		</table>
+	</div>
+</div>
+
+<div>
+	<div class="col-md-6">
+		<div class="">
+			<div class="col-md-12">
+		  		<div class="panel panel-default">
+
+		    		<div class="panel-body">
+						<div class="alert alert-success">
+							<h5><center><b>General Operations</b></center></h5>
+						</div>
+						<table class="table">
+						    <tbody>
+						      	<tr>
+						        	<td style="width: 50%">
+						        		<button class="btn btn-primary" onClick="autoComm()" disabled>Automate Communication</button>
+						        	</td>
+						        	<td class="text-right" style="width: 50%">
+						        		<span id="autoCommResult"></span>
+						        	</td>
+						      	</tr>
+						      	<tr>
+						      		<td></td>
+						      		<td></td>
+						      	</tr>
+						    </tbody>
+					  	</table>
+					</div>
+
+					<div class="panel-body">
+						<div class="alert alert-success">
+							<h5><center><b>Launch Attacks</b></center></h5>
+						</div>
+						<table class="table">
+						    <tbody>
+						     	<tr>
+						        	<td><button class="btn btn-primary" onClick="blackAttack()" style="width: 185px;">Black Hole Attack</button></td>
+						        	<td class="text-right"><b><span id="blackAttackStatus" style="color: crimson"></span></b></td>
+						      	</tr>
+						      	<tr>
+						        	<td><button class="btn btn-primary" onClick="greyAttack()" style="width: 185px;">Grey Hole Attack</button></td>
+						        	<td class="text-right"><b><span id="greyAttackStatus" style="color: crimson"></span></b></td>
+						      	</tr>
+						      	<tr>
+						      		<td><button class="btn btn-primary" onClick="stopAttack()" style="width: 185px;">Stop Attack</button></td>
+						      		<td class="text-right"><b><span id="stopAttackStatus" style="color: green"></span></b></td>
+						      	</tr>
+						    </tbody>
+					  	</table>
+					</div>
+		  		</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="col-md-6">
+	<table class="table table-bordered">
+		<td colspan="2">
+			<center class="alert alert-success"> <b> Current Actuator Operations </b> </center>
+		</td>
+		<tr style="width:50%">
+    		<td style="width:50%">Smoke</td>
+    		<td class="text-right" style="width:50%"><b><span id="actOps">Alarm & Water Triggered</span></b></td>
+		</tr>
+		<tr>
+			<td style="width:50%">Light & Temp</td>
+			<td class="text-right" style="width:50%"><b><span id="actOps">Alarm Triggered</span></b></td>
+		</tr>
+  	</table>
+  	<table class="table table-bordered">
+  		<tr>
+  			<td colspan="2">
+				<center class="alert alert-success"> <b> <<< Communciation Details >>> </b> </center>
+  			</td>
+  		</tr>
+  	</table>
+  	<table class="table table-bordered" style="">
+  		<tr>
+  			<div class="panel panel-default" style="margin-top: -21px;">
+				<div class="panel-body" style="height: 221px; overflow: auto;" id="txList">
+					<center>
+					</center>
+				</div>
+			</div>
+		</tr>
+	</table>
+</div>
+
+<!-- Modal Adding Blockchain Credentials -->
+<div id="myModal1" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Node Blockchain Credentials</h4>
+      </div>
+      <div class="modal-body">
+				<!-- <h4><center> Iternaery Plan(s) Generated Successfully! </center></h4>
+				<hr> -->
+				<div id="nodeCredentials">
+				<p>Node Public Address :
+					<input type="text" class="form-control" id="nodePAddress">
+				</p>
+				<p>Node Private Key :
+					<input type="text" class="form-control" id="nodeKey">
+				</p>
+				<p>Corresponding Fog Address :
+					<input type="text" class="form-control" id="corrFogNode">
+				</p>
+			</div>
+				<!-- <div id="itrMaps">
+					<p>Create Maps</p>
+				</div>
+				<h6><b>If 4 or more nodes are detected than network is divided into equal portions*</b></h6> -->
+      </div>
+      <div class="modal-footer">
+				<button type="button" class="btn btn-primary" data-dismiss="modal" onclick="addDetails()">Add</button>
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- Modal Verify Trust -->
+<div id="myModal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Trust Verification</h4>
+      </div>
+      <div class="modal-body">
+				<!-- <h4><center> Iternaery Plan(s) Generated Successfully! </center></h4>
+				<hr> -->
+				<div id="verificationResult">
+				<p>Node Address :
+					<input type="text" class="form-control" id="nodeAddress">
+				</p>
+			</div>
+				<!-- <div id="itrMaps">
+					<p>Create Maps</p>
+				</div>
+				<h6><b>If 4 or more nodes are detected than network is divided into equal portions*</b></h6> -->
+      </div>
+      <div class="modal-footer">
+				<button type="button" class="btn btn-primary" data-dismiss="modal" onclick="verify()">Verify</button>
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<script>
+function autoComm() {
+	var response = "(<<< Communciation Automated >>>)";
+
+	txt = "<ul>"
+	txt += "<li class='alert alert-info'><p>From : 192.168.1.5 || To : 192.168.1.4 || Message : Quering Water Status!</p></li>"
+	txt += "</ul>"
+
+	document.getElementById("txList").innerHTML += txt;
+	document.getElementById("autoCommResult").innerHTML = response;
+
+ 	xmlhttp = new XMLHttpRequest();
+	xmlhttp.open("GET","http://192.168.1.5:3000/data?func=1", true);
+	xmlhttp.onreadystatechange=function()
+	{
+ 		if(xmlhttp.readyState==4 && xmlhttp.status==200)
+ 		{
+	 		string = xmlhttp.responseText;
+			myObj = JSON.parse(string);
+			var energyOfNode = myObj.energy;
+			var behvaiour = myObj.fb * 100;
+			document.getElementById("frdnfBehaviour").innerHTML = behvaiour;
+			document.getElementById("crntEnergy").innerHTML = energyOfNode;
+	 	}
+ 	}
+ 	xmlhttp.send();
+}
+autoComm();
+setInterval(autoComm, 6000);
+</script>
+
+<script>
+function blackAttack() {
+	var response = "(<<< Attack Launched >>>)";
+	xmlhttp = new XMLHttpRequest();
+	xmlhttp.open("GET","http://192.168.1.5:3000/data?func=2", true);
+	xmlhttp.onreadystatechange=function(){
+	 	if(xmlhttp.readyState==4 && xmlhttp.status==200)
+	 	{
+	 		string = xmlhttp.responseText;
+	 		document.getElementById("blackAttackStatus").innerHTML = response;
+	 		document.getElementById("greyAttackStatus").innerHTML = '';
+	 		document.getElementById("stopAttackStatus").innerHTML = '';
+	 	}
+  	}
+  xmlhttp.send();
+}
+</script>
+
+<script>
+function greyAttack() {
+	var response = "(<<< Attack Launched >>>)";
+	xmlhttp = new XMLHttpRequest();
+	xmlhttp.open("GET","http://192.168.1.5:3000/data?func=3", true);
+	xmlhttp.onreadystatechange=function()
+	{
+		if(xmlhttp.readyState==4 && xmlhttp.status==200)
+		{
+	 		string = xmlhttp.responseText;
+	 		document.getElementById("greyAttackStatus").innerHTML = response;
+	 		document.getElementById("blackAttackStatus").innerHTML = '';
+	 		document.getElementById("stopAttackStatus").innerHTML = '';
+	 	}
+  	}
+  	xmlhttp.send();
+}
+</script>
+
+<script>
+function stopAttack() {
+	var response = "(<<< Attacks Stopped >>>)";
+	xmlhttp = new XMLHttpRequest();
+	xmlhttp.open("GET","http://192.168.1.5:3000/data?func=4", true);
+	xmlhttp.onreadystatechange=function()
+	{
+		if(xmlhttp.readyState==4 && xmlhttp.status==200)
+		{
+			string = xmlhttp.responseText;
+			document.getElementById("stopAttackStatus").innerHTML = response;
+		 	document.getElementById("blackAttackStatus").innerHTML = '';
+		 	document.getElementById("greyAttackStatus").innerHTML = '';
+		}
+ 	}
+ 	xmlhttp.send();
+}
+</script>
+
+<script>
+	function verify() {
+		var nodeID =  document.getElementById("nodeAddress").value;
+			xmlhttp = new XMLHttpRequest();
+			xmlhttp.open("GET","http://192.168.1.3:3000/data?func=7&nodeID=" + nodeID, true);
+			xmlhttp.onreadystatechange=function()
+			{
+				if(xmlhttp.readyState==4 && xmlhttp.status==200)
+				{
+					string = xmlhttp.responseText;
+					document.getElementById("verificationResult").innerHTML = string;
+				}
+		 	}
+		 	xmlhttp.send();
+		}
+</script>
+
+<script>
+	function addDetails() {
+		var nodeID =  document.getElementById("nodePAddress").value;
+		var nodePrivateKey = document.getElementById("nodeKey").value;
+		var fogAddress = document.getElementById("corrFogNode").value;
+			xmlhttp = new XMLHttpRequest();
+			xmlhttp.open("GET","http://192.168.1.3:3000/data?func=8&nodeID=" + nodeID + "&nodePrivateKey=" + nodePrivateKey + "&fogAddress = " + fogAddress, true);
+			xmlhttp.onreadystatechange=function()
+			{
+				if(xmlhttp.readyState==4 && xmlhttp.status==200)
+				{
+					string = xmlhttp.responseText;
+					document.getElementById("verificationResult").innerHTML = string;
+				}
+		 	}
+		 	xmlhttp.send();
+		}
+</script>
+
+
+</body>
+</html>

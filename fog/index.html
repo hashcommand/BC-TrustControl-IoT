@@ -1,0 +1,697 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Control Pannel</title>
+	<!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script> -->
+	<script src="https://gojs.net/latest/release/go.js"></script>
+	<script src="http://0.0.0.0:3000/pathJavascript"></script>
+	<script src="http://0.0.0.0:3000/pathJquery"></script>
+	<link rel="stylesheet" href="http://0.0.0.0:3000/pathCSS">
+</head>
+<style>
+	table {
+  		width:100%;
+	}
+	table, th, td {
+  		border: 1px solid black;
+  		border-collapse: collapse;
+	}
+	th, td {
+  		padding: 15px;
+  		text-align: left;
+	}
+	table.t01 tr:nth-child(even) {
+  		background-color: #eee;
+	}
+	table.t01 tr:nth-child(odd) {
+ 		background-color: #fff;
+	}
+	table.t01 th {
+  		background-color: black;
+  		color: white;
+	}
+</style>
+<body>
+
+<div class="col-md-12 jumbotron">
+	<center>
+		<h2>Control Pannel</h2>
+		<h4>Fog # Dell-Vostro-3750</h4>
+		<p id="fogEther"><button class="btn btn-info" data-toggle="modal" data-target="#myModal7">Register With Ethereum</button></p>
+		<p id=""><button class="btn btn-info" data-toggle="modal" data-target="#myModal6">Add Nodes</button></p>
+	</center>
+</div>
+
+<div class="col-md-12">
+
+	<div class="">
+		<h3> Total number of connected nodes: <span id="counting">0</span>  <a href="javascript:void(0)" onClick="ipLookup()"> <img src="http://localhost:3000/images/refresh.ico" alt="refresh" width="15px" height="15px"></a> </h3>
+	</div>
+
+	<div class="col-md-6">
+
+		<div class="">
+			<!-- Table for IpLookUp data show -->
+			<div id="test" style="height:206px;overflow:auto;">
+				<table class="t01" id="hideMe">
+	  				<tr>
+	    				<th style="width:50%">
+	    					<center>IP Address(s)</center>
+	    				</th>
+
+	    				<th style="width:50%">
+	    					<center>Node Type</center>
+	    				</th>
+	  				</tr>
+
+					<tr>
+	    				<td style="height:154px">
+	    					<center><i>Refresh</i></center>
+	    				</td>
+
+	    				<td style="height:154px">
+	    					<center><i>Refresh</i></center>
+	    				</td>
+	  				</tr>
+				</table>
+			</div>
+		</div>
+
+	</div>
+
+	<div class="col-md-6">
+		<div style="height:206px;overflow: auto;">
+			<table class="t01" style="" id="trustData">
+				<tr>
+					<th> <center>IP Address</center> </th>
+					<th> <center>Trust Values</center> </th>
+					<th> <center>Status</center> </th>
+				</tr>
+				<tr>
+					<td style="height:154px">
+						<center>To be calculated</center>
+					</td>
+					<td style="height:154px">
+						<center>To be calculated</center>
+					</td>
+					<td style="height:154px">
+						<center>To be calculated</center>
+					</td>
+			</table>
+		</div>
+	</div>
+
+</div>
+
+<div class="col-md-12">
+	<br>
+</div>
+
+<div class="col-md-12">
+	<!-- Table for possible operations and attacks -->
+	<div class="col-md-6">
+	<table class="t01">
+		<tr>
+			<th width="50%">
+				<center>
+					Trust Calulcation
+				</center>
+			<!-- <p>If 4 or more nodes are detected than network is divided into two proportions*</p> -->
+			</th>
+		</tr>
+		<tr>
+			<td>
+				<button class="btn btn-info" data-toggle="modal" data-target="#myModal1" onClick="init()">View Current Iterneray Plan(s)</button>
+				<button class="btn btn-info" data-toggle="modal" data-target="#myModal2" onClick='mobileAgent()'>Initiate & Send Mobile Agent(s)</button>
+				<button class="btn btn-info" onClick='calcTrust1()'>Calculate Trust & Transact in Blockchain</button>
+			</td>
+		</tr>
+	</table>
+</div>
+
+<div class="col-md-6">
+		<table class="t01" style="" id="">
+			<tr>
+				<th>
+					Blockchain Hash Details
+				</th>
+			</tr>
+			<tr>
+				<td>
+				<button class="btn btn-info" data-toggle="modal" data-target="#myModal10">View Transaction</button>
+			</td>
+			</tr>
+		</table>
+</div>
+
+</div>
+
+<input type="text" id="helperText" value='["192.168.1.4","192.168.1.3","192.168.1.2","192.168.1.1","192.168.1.5"]' style="">
+<input type="text" id="agentToGenerate" value="" style="">
+
+<div id="testing">
+</div>
+
+
+<!-- modal 10 -->
+<!-- Modal 1 -->
+<div id="myModal10" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Hash Details</h4>
+      </div>
+      <div class="modal-body">
+
+				<table class="t01" style="" id="">
+					<tr>
+						<th>
+							Message
+						</th>
+						<th>
+							Output Hash
+						</th>
+					</tr>
+					<tr>
+						<td>
+							<p>IP : 192.168.1.3 </p>
+							<p>Trust : 80 </p>
+						</td>
+						<td>
+							<span style="word-break:break-word">0xf86c258502540be40083035b609482e041e84074fc5f5947d4d27e3c44f824b7a1a187b1a2bc2ec500008078a04a7db627266fa9a4116e3f6b33f5d245db40983234eb356261f36808909d2848a0166fa098a2ce3bda87af6000ed0083e3bf7cc31c6686b670bd85cbc6da2d6e85</span>
+						</td>
+					</tr>
+				</table>
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+
+<!-- Modal 1 -->
+<div id="myModal1" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Iterneray Planner</h4>
+      </div>
+      <div class="modal-body">
+				<h4><center> Iternaery Plan(s) Generated Successfully! </center></h4>
+				<hr>
+				<div id="itrMaps">
+					<p>Create Maps</p>
+				</div>
+				<h6><b>If 4 or more nodes are detected than network is divided into equal portions*</b></h6>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- Modal 2 -->
+<div id="myModal2" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Mobile Agent(s)</h4>
+      </div>
+      <div class="modal-body">
+        <p><b><span id="nmbrMoblAgnts">0</span></b> Mobile Agent(s) created!</p>
+      </div>
+      <div class="modal-footer">
+				<!-- <button class="btn btn-primary" onClick="sendAgent"> Send Agent(s) </button> -->
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- Modal 3 -->
+<div id="myModal3" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Modal Header</h4>
+      </div>
+      <div class="modal-body">
+        <p>Some text in the modal.</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- Modal 4 -->
+<div id="myModal4" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Node Type</h4>
+      </div>
+      <div class="modal-body">
+        <p><center><span>Sensor</span></center></p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+
+<!-- Modal 4 -->
+<div id="myModal5" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Device Details</h4>
+      </div>
+      <div class="modal-body">
+				<table border='1|1'>
+					<tr>
+						<td>System Id</td>
+						<td>12345</td>
+					</tr>
+					<tr>
+						<td>Device Id</td>
+						<td>Dev0</td>
+					</tr>
+					<tr>
+						<td>Public Address</td>
+						<td>0x89205A3A3b2A69De6Dbf7f01ED13B2108B2c43e7</td>
+					</tr>
+				</table>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<div id="myModal6" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Add Device</h4>
+      </div>
+      <div class="modal-body">
+				<p>System ID :
+					<input type="text" class="form-control" id="systemid">
+				</p>
+        		<p>Device ID :
+					<input type="text" class="form-control" id="nodeid">
+				</p>
+				<p> Assign Public Address :
+					<input type="text" class="form-control" id="nodeAddress">
+				</p>
+				<p> Address Private Key :
+					<input type="text" class="form-control" id="pvtKey">
+				</p>
+			</div>
+      <div class="modal-footer">
+				<button type="button" class="btn btn-primary" onClick="addDevice()">Add Device</button>
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<div id="myModal7" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Add Fog</h4>
+      </div>
+      <div class="modal-body">
+				<p>Fog ID :
+					<input type="text" class="form-control" id="fogId">
+				</p>
+        <p>Fog Public Address :
+					<input type="text" class="form-control" id="fogAddress">
+				</p>
+				<p>Fog Private Key :
+					<input type="text" class="form-control" id="pvtkey">
+				</p>
+			</div>
+      <div class="modal-footer">
+
+
+<button class="btn btn-primary" onClick="addFog()"> Register </button>
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<script>
+function calcTrust1() {
+	setInterval(calcTrust, 8000);
+}
+</script>
+
+
+<script>
+function addFog() {
+	var fogID = document.getElementById("fogId").value;
+	var fogAddress = document.getElementById("fogAddress").value;
+	var pvtKey = document.getElementById("pvtkey").value;
+	xmlhttp = new XMLHttpRequest();
+	xmlhttp.open("GET","http://localhost:3000/data?func=2&fogID=" + fogID + "&fogAddress=" + fogAddress + "&pvtKey=" + pvtKey, true);
+	xmlhttp.onreadystatechange=function(){
+			if(xmlhttp.readyState==4 && xmlhttp.status==200){
+				string = xmlhttp.responseText;
+				alert(string);
+				if(string != '') {
+						document.getElementById("fogEther").innerHTML = string;
+				} else {
+					document.getElementById("fogEther").innerHTML = "Error";
+				}
+			}
+ }
+ xmlhttp.send();
+}
+</script>
+
+<!-- Adding javascript file -->
+<!-- <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js"></script> -->
+
+<!-- Ajax call for IP lookup operations -->
+<script type="text/javascript">
+function ipLookup() {
+	var myObj, x, html, count, string = '';
+   	xmlhttp = new XMLHttpRequest();
+   	xmlhttp.open("GET","http://localhost:3000/data?func=1", true);
+   	xmlhttp.onreadystatechange=function(){
+        if(xmlhttp.readyState==4 && xmlhttp.status==200){
+           	string = xmlhttp.responseText;
+           	myObj = JSON.parse(string);
+						count = Object.keys(myObj).length;
+						html = "<table border='1|1' class='t01'>";
+						html += "<tr><th><center>IP Address(s)</center></th><th style=''><center>Node Type</center></th></tr>";
+						for (var i = 0; i < myObj.length; i++) {
+         						html +="<tr>";
+         						html +="<td>"+myObj[i]+"</td>";
+         					    if (myObj[i] == "192.168.1.2") {
+         								html +='<td>Fog Node</td>';
+         							} else if (myObj[i] == "192.168.1.3") {
+         								html +='<td>Sensor Node</td>';
+         							} else if (myObj[i] == "192.168.1.4") {
+         								html +='<td>Sensor Node</td>';
+         							}else if (myObj[i] == "192.168.1.5") {
+         								html +='<td>Actuator Node</td>';
+         							} else if (myObj[i] == "192.168.1.1") {
+         								html +='<td style="color:red">Router</td>';
+         							} else {
+         								html +='<td>Extra Node</td>';
+         							}
+         					html +="</tr>";
+     					}
+						html+="</table>";
+						html1 = "<table border='1|1' class='t01'>";
+						html1 += "<tr><th><center>IP Address(s)</center></th><th style=''><center>Trust Values</center></th><th style=''><center>Status</center></th></tr>";
+						for (var i = 0; i < myObj.length; i++) {
+							if (myObj[i] != "192.168.1.1" && myObj[i] != "192.168.1.2") {
+									html1 +="<tr>";
+									html1 +="<td>"+myObj[i]+"</td>";
+									html1 +='<td> Need To be Calculated </td>';
+									html1 +='<td> Need To be Calculated </td>';
+									html +="</tr>";
+								}
+							}
+							html+="</table>";
+						document.getElementById("test").innerHTML = html;
+						document.getElementById("trustData").innerHTML = html1;
+						document.getElementById("helperText").value = string;
+						document.getElementById("counting").innerHTML = count-1;
+				}
+   }
+   xmlhttp.send();
+}
+</script>
+
+<script>
+	function init() {
+		var numberOfMobileAgents = 0;
+		var helpArray = [];
+		var newArray = [];
+	var array = document.getElementById("helperText").value;
+	myObj = JSON.parse(array);
+	for (var m = myObj.length - 1; m >= 0; --m) {
+    	if (myObj[m] == "192.168.1.1") {
+        	myObj.splice(m,1);
+    	}
+	}
+
+	countData = Object.keys(myObj).length;
+	if (countData < 2) {
+		for (var i = 0; i < myObj.length; i++) {
+				newArray.push(myObj[i]);
+			}
+			numberOfMobileAgents = 1;
+		} else {
+		 var drama = chunkArray(myObj, 2);
+		 txt = " "
+		 var l = 0;
+		 numberOfMobileAgents = drama.length;
+		 for (var j = 0; j < drama.length; j++){
+			 txt += "<h4><b>Iterneray Plan " + j + " </b><h4>"
+			 txt += "192.168.1.1"
+			 txt += " >>> "
+		 	for (var k = 0; k < drama[j].length; k++) {
+				if( myObj[l] != '192.168.1.2') {
+					txt +=  myObj[l]
+					txt += " >>> "
+					l++;
+				}
+
+				}
+				txt += "192.168.1.1"
+				txt += "<br>"
+		 	}
+			txt += "<hr>"
+		 }
+		 document.getElementById("itrMaps").innerHTML = txt;
+		 document.getElementById("agentToGenerate").value = numberOfMobileAgents;
+}
+</script>
+
+<script>
+function chunkArray(myArray, chunk_size){
+    var index = 0;
+    var arrayLength = myArray.length;
+    var tempArray = [];
+    for (index = 0; index < arrayLength; index += chunk_size) {
+        myChunk = myArray.slice(index, index+chunk_size);
+        tempArray.push(myChunk);
+    }
+    return tempArray;
+}
+</script>
+
+<script>
+function draw(array,size) {
+	var awain = [];
+	var chawan = [];
+	var nodeDataArray = [];
+	var linkDataArray = [];
+	$size = go.GraphObject.make;
+	myDiagram = $size(go.Diagram, "myDiagramDiv" + size);
+	for (var i = 0; i < array.length; i++) {
+					awain.push({
+						key: array[i]
+						});
+			}
+
+	for (var j = 0; j < array.length; j++) {
+		var chunk = array.length-1;
+					if(j === chunk) {
+					chawan.push(
+						{to: array[j-chunk], from: array[j]}
+					);
+			} else {
+				chawan.push(
+					{to: array[j+1], from: array[j]}
+				);
+			}
+
+			myDiagram.model = new go.GraphLinksModel(chawan,awain);
+}
+}
+</script>
+
+<script>
+function mobileAgent() {
+
+	var array1 = [];
+	var iterPlans = [];
+	var agentsToCreat = document.getElementById("agentToGenerate").value;
+	var array = document.getElementById("helperText").value;
+	document.getElementById("nmbrMoblAgnts").innerHTML = agentsToCreat;
+	myObj = JSON.parse(array);
+	//countData = Object.keys(myObj).length;
+	for (var m = myObj.length - 1; m >= 0; --m) {
+    	if (myObj[m] == "192.168.1.1") {
+        	myObj.splice(m,1);
+    	}
+	}
+	var drama = chunkArray(myObj, 2);
+	var l = 0;
+	for (var j = 0; j < drama.length; j++){
+		var Keys = "Plan";
+		for (var k = 0; k < drama[j].length; k++) {
+			array1.push(myObj[l]);
+			l++;
+		}
+		var dataNikama = array1;
+		iterPlans.push({[Keys] : [].concat(array1)});
+		array1 = [];
+	}
+	var plans = JSON.stringify(iterPlans);
+	xmlhttp = new XMLHttpRequest();
+	xmlhttp.open("GET","http://localhost:3000/data?func=3&agentNmbrToCreate=" + agentsToCreat + "&data1=" + plans, true);
+	xmlhttp.onreadystatechange=function(){
+		if(xmlhttp.readyState==4 && xmlhttp.status==200){
+			string = xmlhttp.responseText;
+			myObj1 = JSON.parse(string);
+			var keys = Object.keys(myObj1);
+			if(string != '') {
+				document.getElementById("nmbrMoblAgnts").innerHTML = agentsToCreat;
+			}
+		}
+ 	}
+	xmlhttp.send();
+}
+</script>
+
+<script>
+	function calcTrust() {
+		mobileAgent();
+		xmlhttp = new XMLHttpRequest();
+		xmlhttp.open("GET","http://localhost:3000/data?func=4", true);
+		xmlhttp.onreadystatechange=function(){
+				if(xmlhttp.readyState==4 && xmlhttp.status==200){
+					string = xmlhttp.responseText;
+					if(string != '') {
+						 array = document.getElementById("helperText").value;
+						myObj1 = JSON.parse(string);
+						myObj = JSON.parse(array);
+						//alert(myObj);
+						//countData = Object.keys(myObj).length;
+						html1 = "<table border='1|1' class='t01'>";
+						html1 += "<tr><th><center>IP Address(s)</center></th><th style=''><center>Trust Values</center></th><th style=''><center>Status</center></th></tr>";
+						for (var i = 0; i < myObj.length; i++) {
+							if (myObj[i] != "192.168.1.1" && myObj[i] != "192.168.1.2") {
+									html1 +="<tr>";
+									html1 +="<td>"+myObj[i]+"</td>";
+									if(myObj[i] == '192.168.1.3'){
+										html1 +='<td>' + myObj1['SensorA'] + '</td>';
+										if(myObj1['SensorA'] < 50) { var statusA = "Not Trusted"; detected(); } else if (myObj1['SensorA'] <= 75) {var statusA = "Trusted";} else {var statusA = "Highly Trusted" ;}
+										html1 +='<td>' + statusA + '</td>';
+									} else if (myObj[i] == '192.168.1.4') {
+										html1 +='<td>' + myObj1['SensorB'] + '</td>';
+										if(myObj1['SensorB'] < 50) { var statusB = "Not Trusted"; detected(); } else if (myObj1['SensorB'] <= 75) {var statusB = "Trusted";} else {var statusB = "Highly Trusted" ;}
+										html1 +='<td>' + statusB + '</td>';
+									} else if (myObj[i] == '192.168.1.5') {
+										html1 +='<td>' + myObj1['SensorC'] + '</td>';
+										if(myObj1['SensorC'] < 50) { var statusC = "Not Trusted"; detected(); } else if (myObj1['SensorC'] <= 75) {var statusC = "Trusted";} else {var statusC = "Highly Trusted" ;}
+										html1 +='<td>' + statusC + '</td>';
+									}
+									html1 +="</tr>";
+								}
+									document.getElementById("trustData").innerHTML = html1;
+							}
+							html1 +="</table>";
+					}
+				}
+			}
+		xmlhttp.send();
+	}
+</script>
+
+<script>
+	function addDevice() {
+		var nodeID = document.getElementById("nodeid").value;
+		var sysID = document.getElementById("systemid").value;
+		var nodePAddress = document.getElementById("nodeAddress").value;
+		var pvtKey = document.getElementById("pvtKey").value;
+
+		xmlhttp = new XMLHttpRequest();
+		xmlhttp.open("GET","http://192.168.1.2:3000/data?func=6&nodeID=" + nodeID + "&sysID=" + sysID + "&nodePAddress=" + nodePAddress + "&pvtKey=" + pvtKey, true);
+		xmlhttp.onreadystatechange=function(){
+				if(xmlhttp.readyState==4 && xmlhttp.status==200){
+					string = xmlhttp.responseText;
+					alert(string);
+					if(string != '') {
+							alert("Device Added Successfully");
+					} else {
+					}
+				}
+	 }
+	 xmlhttp.send();
+	}
+</script>
+
+<script>
+	function detected() {
+		xmlhttp = new XMLHttpRequest();
+		xmlhttp.open("GET","http://192.168.1.2:3000/data?func=7", true);
+		xmlhttp.onreadystatechange=function(){
+				if(xmlhttp.readyState==4 && xmlhttp.status==200){
+					string = xmlhttp.responseText;
+					//alert(string);
+					if(string != '') {
+						alert(string);
+					} else {
+					//alert("");
+					}
+				}
+	 }
+	 xmlhttp.send();
+	}
+</script>
+
+</body>
+</html>
